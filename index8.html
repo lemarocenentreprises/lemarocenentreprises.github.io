@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="index8/css/leaflet.css">
+        <link rel="stylesheet" href="index8/css/qgis2web.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .titre {
+         padding: 6px 8px;
+         font: 14px/16px Optima, sans-serif;
+         background: red;
+         background: rgba(255,255,255,0.9);
+         box-shadow: 0 0 15px rgba(0,0,0,0.2);
+         border-radius: 5px
+        }
+
+        .titre h4 {
+        margin: 0 0 5px;
+        color: #666;
+        } 
+        </style>
+        <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: white;
+  padding: 1px;
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  font-weight: normal;
+  font-family: Optima, sans-serif;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 25%;
+  height: 580px; /* only for demonstration, should be removed */
+  background:white;
+  padding: 0;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 2;
+  padding-left: 2;
+  margin-left: 2;
+}
+
+article {
+  float: left;
+  padding: 0;
+  width: 75%;
+  background-color: #f1f1f1;
+  height: 580px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+        
+        <title>La carte de réseau routier</title>
+    </head>
+    <body>
+        <header>
+        <h2>-Le réseau routier dans la région de Drâa Tafilalet-</h2>
+        </header>
+        <section>
+  <nav>
+    <ul>
+         <h1 style="font-size:16px;font-style:italic;font-weight:normal;text-decoration:underline;text-align: center;color:black">Réseau routier à Drâa-Tafilalet</h1>
+         <h2 style="font-size:14px;font-style: normal;font-weight:normal;text-align: left;">La carte suivante affiche les différentes classes des routes existantes dans la région de Drâa-Tafilalet.Elle permet aux entreprises de faciliter la réalisation des opérations de transaction économique,distribution des marchandises et transport de personnel en optimisant le trajet à suivre  comme elle permet aux nouvelles entreprises de choisir un siège  plus proche du réseau existant dont la longueur est de 5421.60km.</h2>
+         <img src="index8/images/Capture.PNG" alt="HTML5 Icon"style="width:300px;height:200px;float:center">
+         
+
+    </ul>
+  </nav>
+  <article>
+  <div id="map"></div>
+  </article>
+</section>
+       
+        <script src="index8/js/qgis2web_expressions.js"></script>
+        <script src="index8/js/leaflet.js"></script>
+        <script src="index8/js/leaflet.rotatedMarker.js"></script>
+        <script src="index8/js/leaflet.pattern.js"></script>
+        <script src="index8/js/leaflet-hash.js"></script>
+        <script src="index8/js/Autolinker.min.js"></script>
+        <script src="index8/js/rbush.min.js"></script>
+        <script src="index8/js/labelgun.min.js"></script>
+        <script src="index8/js/labels.js"></script>
+        <script src="index8/data/Export_Output_0.js"></script>
+        <script src="index8/data/draatafilalet_1.js"></script>
+        <script src="index8/data/rr_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:5
+        }).fitBounds([[27.1212168649,-17.5551393851],[34.1275388458,-5.30667721718]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function pop_Export_Output_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Code_Regio'] !== null ? Autolinker.link(String(feature.properties['Code_Regio'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nom_Region'] !== null ? Autolinker.link(String(feature.properties['Nom_Region'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nom_Regi_1'] !== null ? Autolinker.link(String(feature.properties['Nom_Regi_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nb_Menages'] !== null ? Autolinker.link(String(feature.properties['Nb_Menages'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Population'] !== null ? Autolinker.link(String(feature.properties['Population'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Etrangers'] !== null ? Autolinker.link(String(feature.properties['Etrangers'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Marocains'] !== null ? Autolinker.link(String(feature.properties['Marocains'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_Reg'] !== null ? Autolinker.link(String(feature.properties['ID_Reg'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape__Are'] !== null ? Autolinker.link(String(feature.properties['Shape__Are'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape__Len'] !== null ? Autolinker.link(String(feature.properties['Shape__Len'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape__A_1'] !== null ? Autolinker.link(String(feature.properties['Shape__A_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape__L_1'] !== null ? Autolinker.link(String(feature.properties['Shape__L_1'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Export_Output_0_0() {
+            return {
+                pane: 'pane_Export_Output_0',
+                opacity: 1,
+                color: '#bdbdbd',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: '#bdbdbd',
+            }
+        }
+        map.createPane('pane_Export_Output_0');
+        map.getPane('pane_Export_Output_0').style.zIndex = 400;
+        map.getPane('pane_Export_Output_0').style['mix-blend-mode'] = 'normal';
+        var layer_Export_Output_0 = new L.geoJson(json_Export_Output_0, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Export_Output_0',
+                       style: style_Export_Output_0_0,
+        });
+        bounds_group.addLayer(layer_Export_Output_0);
+        map.addLayer(layer_Export_Output_0);
+        function pop_draatafilalet_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? Autolinker.link(String(feature.properties['Name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Descriptio'] !== null ? Autolinker.link(String(feature.properties['Descriptio'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_draatafilalet_1_0() {
+            return {
+                pane: 'pane_draatafilalet_1',
+                opacity: 1,
+                color: '#000',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: '#969696',
+            }
+        }
+        map.createPane('pane_draatafilalet_1');
+        map.getPane('pane_draatafilalet_1').style.zIndex = 401;
+        map.getPane('pane_draatafilalet_1').style['mix-blend-mode'] = 'normal';
+        var layer_draatafilalet_1 = new L.geoJson(json_draatafilalet_1, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_draatafilalet_1',
+           
+            style: style_draatafilalet_1_0,
+        });
+        bounds_group.addLayer(layer_draatafilalet_1);
+        map.addLayer(layer_draatafilalet_1);
+        function pop_rr_2(feature, layer) {
+            // var popupContent = '<table>\
+            //         <tr>\
+            //             <td colspan="2">' + (feature.properties['osm_id'] !== null ? Autolinker.link(String(feature.properties['osm_id'])) : '') + '</td>\
+            //         </tr>\
+            //         <tr>\
+            //             <td colspan="2">' + (feature.properties['highway'] !== null ? Autolinker.link(String(feature.properties['highway'])) : '') + '</td>\
+            //         </tr>\
+            //         <tr>\
+            //             <td colspan="2">' + (feature.properties['ref'] !== null ? Autolinker.link(String(feature.properties['ref'])) : '') + '</td>\
+            //         </tr>\
+            //         <tr>\
+            //             <td colspan="2">' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+            //         </tr>\
+            //         <tr>\
+            //             <td colspan="2">' + (feature.properties['surface'] !== null ? Autolinker.link(String(feature.properties['surface'])) : '') + '</td>\
+            //         </tr>\
+            //         <tr>\
+            //             <td colspan="2">' + (feature.properties['oneway'] !== null ? Autolinker.link(String(feature.properties['oneway'])) : '') + '</td>\
+            //         </tr>\
+            //         <tr>\
+            //             <td colspan="2">' + (feature.properties['maxspeed'] !== null ? Autolinker.link(String(feature.properties['maxspeed'])) : '') + '</td>\
+            //         </tr>\
+            //         <tr>\
+            //             <td colspan="2">' + (feature.properties['maxweight'] !== null ? Autolinker.link(String(feature.properties['maxweight'])) : '') + '</td>\
+            //         </tr>\
+            //         <tr>\
+            //             <td colspan="2">' + (feature.properties['access'] !== null ? Autolinker.link(String(feature.properties['access'])) : '') + '</td>\
+            //         </tr>\
+            //         <tr>\
+            //             <td colspan="2">' + (feature.properties['lit'] !== null ? Autolinker.link(String(feature.properties['lit'])) : '') + '</td>\
+            //         </tr>\
+            //     </table>';
+            //layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.bindPopup("<h4>Numéro de route:<h4>" + (feature.properties['ref']) , {Width:400,Height: 400});
+        }
+
+        function style_rr_2_0(feature) {
+            switch(String(feature.properties['highway'])) {
+                case 'primary':
+                    return {
+                pane: 'pane_rr_2',
+                opacity: 1,
+                color: '#8c2d04',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.5,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'secondary':
+                    return {
+                pane: 'pane_rr_2',
+                opacity: 1,
+                color: '#8c2d04',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.5,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'tertiary':
+                    return {
+                pane: 'pane_rr_2',
+                opacity: 1,
+                color: '#8c2d04',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 0.75,
+                fillOpacity: 0,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_rr_2',
+                opacity: 1,
+                color: 'rgba(50,222,108,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_rr_2');
+        map.getPane('pane_rr_2').style.zIndex = 402;
+        map.getPane('pane_rr_2').style['mix-blend-mode'] = 'normal';
+        var layer_rr_2 = new L.geoJson(json_rr_2, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_rr_2',
+            onEachFeature: pop_rr_2,
+            style: style_rr_2_0,
+        });
+        bounds_group.addLayer(layer_rr_2);
+        map.addLayer(layer_rr_2);
+        setBounds();
+        var titre = L.control();
+
+titre.onAdd = function (map) {
+  var divTitre = L.DomUtil.create('div', 'titre'); 
+  divTitre.innerHTML = "<h4>cliquer sur une route pour avoir son numéro</h4>";
+  return divTitre;
+};
+
+
+titre.addTo(map); 
+        var legend = L.control({position: 'bottomright'}); 
+        legend.onAdd = function (map) {
+        var divLeg = L.DomUtil.create('div', 'info legend');
+        divLeg.innerHTML +='<img src=index8/images/légende.png>';
+        return divLeg;
+}; 
+
+        legend.addTo(map);
+        L.control.scale().addTo(map);
+        </script>
+    </body>
+</html>

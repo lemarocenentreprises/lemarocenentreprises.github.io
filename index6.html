@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="index6/css/leaflet.css">
+        <link rel="stylesheet" href="index6/css/qgis2web.css">
+         <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" type="text/css"> -->
+         <link rel="stylesheet" href="index6\css\jquery-ui11.css">
+         
+         
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        #red {
+        float: left;
+        clear: left;
+        width: 300px;
+        margin: 15px;
+        }
+        #red .ui-slider-range { background: #ef2929; }
+        .titre {
+         padding: 8px 8px;
+         font: 16px/12px Optima, sans-serif;
+         background: red;
+         background: rgba(255,255,255,0.9);
+         box-shadow: 0 0 15px rgba(0,0,0,0.2);
+         border-radius: 5px
+        }
+
+        .titre h4 {
+        margin: 0 0 2px;
+        color: #666;
+        } 
+        </style>
+         <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: #fff7fb;
+  padding: 1px;
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  font-weight: normal;
+  font-family: Optima, sans-serif;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 25%;
+  height: 580px; /* only for demonstration, should be removed */
+  background:#fff7fb;
+  padding: 0;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 2;
+  padding-left: 2;
+  margin-left: 2;
+}
+
+article {
+  float: left;
+  padding: 0;
+  width: 75%;
+  background-color: #f1f1f1;
+  height: 580px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+        
+        <title>l'évolution de nombre d'entreprises</title>
+    </head>
+    <body>
+        <header>
+        <h2>-LL'évolution de nombre d'entreprises à Drâa Tafilalet-</h2>
+        </header>
+        <section>
+  <nav>
+    <ul>
+         <h1 style="font-style: italic;font-weight:normal;text-align: center;text-decoration:underline; ">Création des entreprises</h1>
+         <h2 style="font-size:14px;font-style: normal;font-weight:normal;text-align: left;">La carte suivante présente l'évolution du nombre d'entreprises au cours des années 2014,2015 et 2016 à Drâa-Tafilalet.Ce nombre a connu une augmentation légère au cours de trois ans pour quelques provinces ,une stagnation ou un recul pour d'autres.La province d'Ouarzazate a vu la création de plus grand nombre d'entreprises allant de 669 entreprises en 2014 à 712 entreprises en 2016 grâce aux potentiels agricoles,touristiques et culturels qui attirent les investisseurs</h2>
+         <img src="index6/images/Noor.jpg" alt="HTML5 Icon"style="width:300px;height:200px;float:center">
+         <h2 style="font-size:12px;font-style: italic;font-weight:normal;text-align: center;">La centrale solaire Noor à la province de Ouarzazate</h2>
+
+    </ul>
+  </nav>
+  <article>
+  <div id="map"></div>
+  </article>
+</section>
+        
+        <div id="sliderControl" class="#red .ui-slider-range"></div>
+        <script src="index6/js/qgis2web_expressions.js"></script>
+        <script src="index6/js/leaflet.js"></script>
+        <script src="index6/js/leaflet.rotatedMarker.js"></script>
+        <script src="index6/js/leaflet.pattern.js"></script>
+        <script src="index6/js/leaflet-hash.js"></script>
+        <script src="index6/js/Autolinker.min.js"></script>
+        <script src="index6/js/rbush.min.js"></script>
+        <script src="index6/js/labelgun.min.js"></script>
+        <script src="index6/js/labels.js"></script>
+        <script src="index6/data/toutes_les_regions_0.js"></script>
+        <script src="index6/data/regionss_1.js"></script>
+        <script src="index6/data/province_sans_donnes_2.js"></script>
+        <script src="index6/data/Centrodes_3.js"></script>
+        <script src="index6/js/SliderControl.js"></script>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[25.0402503284,-10.9031765774],[35.1585966866,-6.77134259565]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+            map.setMaxBounds(map.getBounds());
+        }
+        var titre = L.control({position:'topright'});
+        titre.onAdd = function (map) {
+        var divTitre = L.DomUtil.create('div', 'titre'); 
+        divTitre.innerHTML = "<h4>cliquer sur le slider pour afficher la carte en différentes dates</h4>";
+        return divTitre;
+        };
+        titre.addTo(map);
+        var info= L.control({position:'bottomleft'});
+        info.onAdd=function(map){
+            this._div=L.DomUtil.create('div','info');
+            this.update();
+            return this._div;
+
+        };
+
+        info.update=function(props){
+            this._div.innerHTML=(props ? '<b>'+props.Name + '</b><br/>'+'2014 : '+ props.nombre_201 +' Entreprises '+ '</b><br/>'+'2015 : '+ props.nombre_202+' Entreprises '+ '</b><br/>'+'2016 : '+ props.nombre_203 +' Entreprises ': 'glisser sur une province')};
+            info.addTo(map);
+        function highlightFeature(e) {
+            var layer = e.target;
+            layer.setStyle({
+                weight:5 ,
+                color: 'grey',
+                dashArray:'',
+                fillOpacity:0.7
+            })
+            info.update(layer.feature.properties);
+        }   
+        
+        
+
+    function resetHighlight(e) {
+    layer_regionss_1.resetStyle(e.target);
+        info.update();
+    }
+
+    function zoomToFeature(e) {
+        map.fitBounds(e.target.getBounds());
+    }
+
+    function onEachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: zoomToFeature
+        });
+    }
+        
+    
+        function style_toutes_les_regions_0_0() {
+            return {
+                pane: 'pane_toutes_les_regions_0',
+                opacity: 1,
+                color: '#fff7bc',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: '#fff7bc',
+            }
+        }
+        map.createPane('pane_toutes_les_regions_0');
+        map.getPane('pane_toutes_les_regions_0').style.zIndex = 400;
+        map.getPane('pane_toutes_les_regions_0').style['mix-blend-mode'] = 'normal';
+        var layer_toutes_les_regions_0 = new L.geoJson(json_toutes_les_regions_0, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_toutes_les_regions_0',
+            style: style_toutes_les_regions_0_0,
+        });
+        bounds_group.addLayer(layer_toutes_les_regions_0);
+        map.addLayer(layer_toutes_les_regions_0);
+        function pop_regionss_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? Autolinker.link(String(feature.properties['Name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Descriptio'] !== null ? Autolinker.link(String(feature.properties['Descriptio'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMBRE'] !== null ? Autolinker.link(String(feature.properties['NOMBRE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TRIBUNAL'] !== null ? Autolinker.link(String(feature.properties['TRIBUNAL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nombre_ent'] !== null ? Autolinker.link(String(feature.properties['nombre_ent'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMBRE_1'] !== null ? Autolinker.link(String(feature.properties['NOMBRE_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TRIBUNAL_1'] !== null ? Autolinker.link(String(feature.properties['TRIBUNAL_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nombre_201'] !== null ? Autolinker.link(String(feature.properties['nombre_201'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nombre_202'] !== null ? Autolinker.link(String(feature.properties['nombre_202'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nombre_203'] !== null ? Autolinker.link(String(feature.properties['nombre_203'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMBRE_12'] !== null ? Autolinker.link(String(feature.properties['NOMBRE_12'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_regionss_1_0() {
+            return {
+                pane: 'pane_regionss_1',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: '#fec44f',
+            }
+        }
+        map.createPane('pane_regionss_1');
+        map.getPane('pane_regionss_1').style.zIndex = 401;
+        map.getPane('pane_regionss_1').style['mix-blend-mode'] = 'normal';
+        var layer_regionss_1 = new L.geoJson(json_regionss_1, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_regionss_1',
+            onEachFeature: onEachFeature,
+            style: style_regionss_1_0,
+        });
+        bounds_group.addLayer(layer_regionss_1);
+        map.addLayer(layer_regionss_1);
+        function pop_province_sans_donnes_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                
+            });
+            layer.bindPopup('pas de données pour Tinghir', {maxHeight: 400});
+        }
+
+        function style_province_sans_donnes_2_0() {
+            return {
+                pane: 'pane_province_sans_donnes_2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: '#fec44f',
+            }
+        }
+        map.createPane('pane_province_sans_donnes_2');
+        map.getPane('pane_province_sans_donnes_2').style.zIndex = 402;
+        map.getPane('pane_province_sans_donnes_2').style['mix-blend-mode'] = 'normal';
+        var layer_province_sans_donnes_2 = new L.geoJson(json_province_sans_donnes_2, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_province_sans_donnes_2',
+            onEachFeature: pop_province_sans_donnes_2,
+            style: style_province_sans_donnes_2_0,
+        });
+        bounds_group.addLayer(layer_province_sans_donnes_2);
+        map.addLayer(layer_province_sans_donnes_2);
+        function pop_Centrodes_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? Autolinker.link(String(feature.properties['Name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Descriptio'] !== null ? Autolinker.link(String(feature.properties['Descriptio'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMBRE'] !== null ? Autolinker.link(String(feature.properties['NOMBRE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TRIBUNAL'] !== null ? Autolinker.link(String(feature.properties['TRIBUNAL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nombre_ent'] !== null ? Autolinker.link(String(feature.properties['nombre_ent'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMBRE_1'] !== null ? Autolinker.link(String(feature.properties['NOMBRE_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TRIBUNAL_1'] !== null ? Autolinker.link(String(feature.properties['TRIBUNAL_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nombre_201'] !== null ? Autolinker.link(String(feature.properties['nombre_201'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nombre_202'] !== null ? Autolinker.link(String(feature.properties['nombre_202'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nombre_203'] !== null ? Autolinker.link(String(feature.properties['nombre_203'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMBRE_12'] !== null ? Autolinker.link(String(feature.properties['NOMBRE_12'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+        function setSizeIcon(value){
+            return rayon=1.0083 * Math.pow(value/149, 0.5716) * 6.0;
+        }
+
+        function style_Centrodes_3_0(feature,layer) {
+            return {
+                pane: 'pane_Centrodes_3',
+                radius: setSizeIcon(feature.properties.nombre_201),
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: '#fb6a4a',
+                time : "2014",
+            }
+        }
+        function style_Centrodes_3_1(feature,layer) {
+            return {
+                pane: 'pane_Centrodes_3',
+                radius: setSizeIcon(feature.properties.nombre_202),
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: '#fb6a4a',
+                time : "2015",
+            }
+        }
+        function style_Centrodes_3_2(feature,layer) {
+            return {
+                pane: 'pane_Centrodes_3',
+                radius: setSizeIcon(feature.properties.nombre_203),
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: '#fb6a4a',
+                time : "2016",
+            }
+        }
+        map.createPane('pane_Centrodes_3');
+        map.getPane('pane_Centrodes_3').style.zIndex = 403;
+        map.getPane('pane_Centrodes_3').style['mix-blend-mode'] = 'normal';
+        var layer_Centrodes_3 = new L.geoJson(json_Centrodes_3, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Centrodes_3',
+           // onEachFeature: pop_Centrodes_3,
+            time : "2014",
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Centrodes_3_0(feature));
+            },
+        });
+         var layer_Centrodes_2 = new L.geoJson(json_Centrodes_3, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Centrodes_3',
+            //onEachFeature: pop_Centrodes_3,
+            time : "2015",
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Centrodes_3_1(feature));
+            },
+        });
+         var layer_Centrodes_1 = new L.geoJson(json_Centrodes_3, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Centrodes_3',
+           // onEachFeature: pop_Centrodes_3,
+            time : "2016",
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Centrodes_3_2(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Centrodes_3);
+        map.addLayer(layer_Centrodes_3);
+        setBounds();
+        layerGroup = L.layerGroup([layer_Centrodes_3,layer_Centrodes_2,layer_Centrodes_1]);
+        var sliderControl = L.control.sliderControl({layer:layerGroup,position:'topleft',follow:1});
+        map.addControl(sliderControl);
+        sliderControl.startSlider();
+        var legend = L.control({position: 'bottomright'}); 
+        legend.onAdd = function (map) {
+    var divLeg = L.DomUtil.create('div', 'info legend');
+    divLeg.innerHTML +='<img src=index6/images/leg.png>';
+    return divLeg;
+}; 
+
+     legend.addTo(map);
+    
+        
+        </script>
+    </body>
+</html>

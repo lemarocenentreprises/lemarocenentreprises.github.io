@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Les entreprises du Maroc</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600">        
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/media-queries.css">
+        <link rel="stylesheet" href="assets/css/leaflet.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/graphs.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+    
+        <!-- Loader -->
+    	<div class="loader">
+    		<div class="loader-img"></div>
+    	</div>
+
+		<!-- Top menu -->
+		<nav class="navbar navbar-inverse navbar-fixed-top navbar-no-bg" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="top-navbar-1">
+					<ul class="nav navbar-nav">
+						<li><a class="scroll-link" href="#top-content">Acceuil</a></li>
+						<li><a class="scroll-link" href="#services">le Maroc en entreprises </a></li>
+						<li><a class="scroll-link" href="#portfolio">région draa-tafilalet</a></li>
+						<li><a class="scroll-link" href="#testimonials">cartes nationales</a></li>
+						<li><a class="scroll-link" href="#blog">cartes régionales</a></li>
+						<li><a class="scroll-link" href="#footer">Contact</a></li>
+					</ul>
+					<div class="navbar-text navbar-right">
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-instagram"></i></a>
+						
+					</div>
+				</div>
+			</div>
+		</nav>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                	
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                        	<div class="logo wow fadeInDown">
+                        		<a href="index.html"></a>
+                        	</div>
+                            <h1 class="wow fadeInLeftBig" style="color:white;font-size:47px">Le Maroc en entreprises</h1>
+                            <div class="description wow fadeInLeftBig" style="color:white">
+                            	<p style="font-size:16px">
+	                            	Visualisez les variables économiques des entreprises sur des cartes interactives au  niveau national et surtout pour la région de Drâa-Tafilalet! 
+                            	</p>
+                            </div>
+                            <div class="top-big-link wow fadeInUp">
+                            	<!-- <a class="btn btn-link-1" href="http://azmind.com">Download it</a> -->
+                            	<a class="btn btn-link-1 scroll-link" href="#services">Savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Services -->
+        <div class="services-container section-container">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 services section-description wow fadeIn">
+	                    <h2>Les entreprises au Maroc</h2>
+	                    <div class="divider-1 wow fadeInUp"><span></span></div>
+	                </div>
+	            </div>
+	            <div class="row">
+                	<div class="col-sm-4 services-box wow fadeInUp">
+                		<div class="row">
+                			<div class="col-sm-4">
+			                	<div class="services-box-icon">
+			                		<i class="fa fa-pie-chart"></i>
+			                	</div>
+		                	</div>
+	                		<div class="col-sm-8">
+	                    		<h3>Collecte des données</h3>
+	                    		<p>Une entreprise est caractérisée par un ensemble des indicateurs économiques.La représentation de ces indicateurs sur un support cartographique aide à l'interprétation et l'analyse de la situation éConomique et à la prise de décision.</p>
+	                    	</div>
+	                    </div>
+                    </div>
+                    <div class="col-sm-4 services-box wow fadeInDown">
+	                	<div class="row">
+                			<div class="col-sm-4">
+			                	<div class="services-box-icon">
+			                		<i class="fa fa-edit"></i>
+			                	</div>
+		                	</div>
+	                		<div class="col-sm-8">
+	                    		<h3>Niveau national et régional</h3>
+	                    		<p>Le premier niveau de représentation des variables économiques est le territoire marocain par ses 12 régions et le deuxième niveau est la région de Drâa Tafilalet par ses différentes provinces.</p>
+	                    	</div>
+	                    </div>
+                    </div>
+                    <div class="col-sm-4 services-box wow fadeInUp">
+	                	<div class="row">
+                			<div class="col-sm-4">
+			                	<div class="services-box-icon">
+			                		<i class="fa fa-map"></i>
+			                	</div>
+		                	</div>
+	                		<div class="col-sm-8">
+	                    		<h3>Cartes stylisées et interactives</h3>
+	                    		<p>Des cartes interactives nationales et régionales permettront de visualiser des informations sur les entreprises marocaines avec des symboles adéquats et des échelles différentes</p>
+	                    	</div>
+	                    </div>
+                    </div>
+	            </div>
+	        </div>
+        </div>
+
+        <!-- Great support -->
+        <div class="great-support-container section-container section-container-gray-bg">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 great-support section-description wow fadeIn">
+	                </div>
+	            </div>
+	            <div class="row">
+	            	<div class="col-sm-7 great-support-box wow fadeInLeft">
+	                    <div class="great-support-box-text great-support-box-text-left">
+	                    	<h3>LA REGION DE DRAA TAFILALET EN QUELQUES CHIFFRES
+</h3>
+	                    	<p class="medium-paragraph">
+	                    		Une superficie globale : <span class="colored-text">88 975 km2</span> , soit  <span class="colored-text">12,5%</span>de la
+                                superficie nationale.
+	                    	</p>
+	                    	<ul style="list-style-type:none;position: left">
+                            <li>05 Provinces: Errachidia, Ouarzazate, Midelt, Tinghir et
+Zagora.</li>
+                            <li>17 cercles.</li>
+                            <li>16 communes urbaines.</li>
+                            <li>109 communes rurales.</li>
+                            </ul>
+	                    	<p>
+	                    		Une population de <span class="colored-text">1 635 008</span> habitants (4,8% de la population nationale).
+                            </p>
+                             <p>
+                            Une densité de <span class="colored-text">18,4</span> hab/Km² (Moyenne nationale 47,6
+                            hab/Km²).</p>
+                             <p>
+                             <span class="colored-text">34,3%</span> des habitants sont urbains (taux national 60,36%).
+	                    	</p>
+	                    	
+	                    </div>
+	                </div>
+	                <div class="col-sm-5 great-support-box great-support-box-phone wow fadeInUp">
+	                    <img src="assets/img/devices/iphone.png" alt="">
+	                </div>
+	            </div>
+	        </div>
+        </div>
+
+		<!-- More services -->
+        <div class="more-services-container section-container">
+	        <div class="container">
+	        	
+	            <div class="row">
+	                <div class="col-sm-12 more-services section-description wow fadeIn">
+	                    <h2>Chiffres clès : Entreprises Marocaines</h2>
+	                    <div class="divider-1 wow fadeInUp"><span></span></div>
+	                </div>
+	            </div>
+	            
+	            <div class="row">
+	                <div class="col-sm-6 more-services-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3">
+	                			<div class="more-services-box-icon">
+	                				<i class="fa fa-list-ol"></i>
+	                			</div>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<h3>Nombre des entreprises au Maroc </h3>
+		                    	<p>
+		              En 2018,plus de 533 900 entreprises existent au Maroc
+		                    	</p>
+	                		</div>
+	                	</div>
+	                </div>
+	                <div class="col-sm-6 more-services-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3">
+	                			<div class="more-services-box-icon">
+	                				<i class="fa fa-list-ol"></i>
+	                			</div>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<h3>Répartition régionale </h3>
+		                    	<p>
+		                    	La région Casablanca-Settat en première place avec une part de 36%,suivie des régions Rabat-Salé-Kénitra (15%), Tanger-Tétouan-Al Hoceima (11%) et enfin Marrakech-Safi (11%)	
+		                    	</p>
+	                		</div>
+	                	</div>
+	                </div>
+	            </div>
+	            
+	            <div class="row">
+	                <div class="col-sm-6 more-services-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3">
+	                			<div class="more-services-box-icon">
+	                				<i class="fa fa-list-ol"></i>
+	                			</div>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<h3>Les plus grandes entreprises du Maroc</h3>
+		                    	<p>
+		                    		1-Société anonyme marocaine de l'industrie du raffinement(SAMIR); 2-Itissalat al maghrib;  3-Maroc phosphore; 4-
+                                    Office cherifien des phosphates.
+		                    	</p>
+	                		</div>
+	                	</div>
+	                </div>
+	                <div class="col-sm-6 more-services-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3">
+	                			<div class="more-services-box-icon">
+	                				<i class="fa fa-list-ol"></i>
+	                			</div>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<h3>Statut juridique des sociétés</h3>
+		                    	<p>
+		                    		Les entreprises les plus dominantes au maroc sont les entreprises SARL avec plus de 54%,les entreprises SARL à associé unique avec 36.2% et les sociétés anonymes avec 6.1% de la totalité des entreprises
+		                    	</p>
+	                		</div>
+	                	</div>
+	                </div>
+	            </div>
+
+	        </div>
+        </div>
+
+		<!-- Call to action -->
+        <div class="call-to-action-container section-container section-container-image-bg">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 call-to-action section-description wow fadeInLeftBig">
+	                    <p style="font-style: italic;font-size: 16px">
+	                    	“Une entreprise dans laquelle il n'y a pas d'ordre est incapable de survivre ; mais une entreprise sans désordre est incapable d'évoluer.”  <h5 style="font-size:10px ,font-style:italic; ">        Bernard Nadoulek </h5>
+	                    </p>
+	                </div>
+	            </div>
+	            <!-- <div class="row">
+	            	<div class="col-sm-12 section-bottom-button wow fadeInUp">
+                        <a class="btn btn-link-1 scroll-link" href="#top-content">Download now</a>
+	            	</div>
+	            </div> -->
+	        </div>
+        </div>
+        
+        <!-- Portfolio -->
+        <div class="portfolio-container section-container">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 portfolio section-description wow fadeIn">
+	                    <h2>Potentialités de la région de Drâa-Tafilalet</h2>
+	                    <div class="divider-1 wow fadeInUp"><span></span></div>
+	  	                </div>
+	            </div>
+	            <div class="row">
+                	<div class="col-sm-4 portfolio-box wow fadeInUp">
+	                	<div class="portfolio-box-image">
+	                		<img src="assets/img/portfolio/1.jpg" alt="" data-at2x="assets/img/portfolio/1.jpg">
+	                	</div>
+                		<h3> Agriculture <i class="fa fa-angle-right"></i></h3>
+                		
+                		<p>Principale production à grande
+valeur économique : Dattes,
+Pommes et Rose..</p>
+                    </div>
+                    <div class="col-sm-4 portfolio-box wow fadeInDown">
+	                	<div class="portfolio-box-image">
+	                		<img src="assets/img/portfolio/2.jpg" alt="" data-at2x="assets/img/portfolio/2.jpg">
+	                	</div>
+                		<h3>Energie et Mines<i class="fa fa-angle-right"></i></h3>
+                   		<p>Patrimoine minier : 33% du
+                        nombre des actes miniers au
+                        niveau national</p><p>
+                        • Projets d’énergie renouvelable
+                        programmés : Noor Ouarzazate,
+                        Noor Midelt, Noor Tafilalet
+                         Erfoud, Noor Tafilalet Zagora, …</p>
+                         <p></p>
+                    </div>
+                    <div class="col-sm-4 portfolio-box wow fadeInUp">
+	                	<div class="portfolio-box-image">
+	                		<img src="assets/img/portfolio/3.jpg" alt="" data-at2x="assets/img/portfolio/3.jpg">
+	                	</div>
+                		<h3>Tourisme et industrie culturelle<i class="fa fa-angle-right"></i></h3>
+     
+                		<p>Sites touristiques de renommé
+international : Kasbah Ben Haddou,
+Sijilmassa, Gorges de Dades, Imilchil,
+Mhamid Ghizlane,
+</p><p>
+• Un capital cinématographique de
+renommé international.
+</p>
+<p></p>
+                    </div>
+	            
+	        </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials-container section-container section-container-image-bg">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 testimonials section-description wow fadeIn">
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-sm-10 col-sm-offset-1 testimonial-list wow fadeInUp">
+	                	<div role="tabpanel">
+	                		<!-- Tab panes -->
+	                		<div class="tab-content">
+	                			<div role="tabpanel" class="tab-pane fade in active" id="tab1">
+	                				<div class="testimonial-image">
+	                					<img src="assets/img/testimonials/1.jpg" alt="" data-at2x="assets/img/testimonials/1.jpg">
+	                				</div>
+	                				<div class="testimonial-text">
+		                                <p>
+		                                	"Le nombre des entreprises créés en 2017 dans les différentes régions du Maroc est présenté sur une carte de symboles proportionnels.Cliquez sur le lien ci-dessous pour visualiser et interagir avec la carte"<br>
+		                                	<a href="index1.html##">Carte de nombre des entreprises</a>
+		                                </p>
+	                                </div>
+	                			</div>
+	                			<div role="tabpanel" class="tab-pane fade" id="tab2">
+	                				<div class="testimonial-image">
+	                					<img src="assets/img/testimonials/2.jpg" alt="" data-at2x="assets/img/testimonials/2.jpg">
+	                				</div>
+	                				<div class="testimonial-text">
+		                                <p>
+		                                	"Le PIB par habitant dans les différentes régions du Maroc est présenté sur une carte choroplèthe multidate(2014-2015-2016).Cliquez sur le lien ci-dessous pour visualiser et interagir avec la carte"<br>
+		                                	<a href="index2.html#">Carte multidate:répartition de PIB par habitant</a>
+		                                </p>
+	                                </div>
+	                			</div>
+	                			
+	                			<div role="tabpanel" class="tab-pane fade" id="tab4">
+	                				<div class="testimonial-image">
+	                					<img src="assets/img/testimonials/4.jpg" alt="" data-at2x="assets/img/testimonials/4.jpg">
+	                				</div>
+	                				<div class="testimonial-text">
+		                                <p>
+		                                	"Le réseau routier de tout le territoire marocain est présenté par trois classes de routes les plus répandues.Cliquez sur le lien ci-dessous pour visualiser et interagir avec la carte"<br>
+		                                	<a href="index4.html#">Carte de réseau routier</a>
+		                                </p>
+	                                </div>
+	                			</div>
+	                			<div role="tabpanel" class="tab-pane fade" id="tab5">
+	                				<div class="testimonial-image">
+	                					<img src="assets/img/testimonials/9.jpg" alt="" data-at2x="assets/img/testimonials/9.jpg">
+	                				</div>
+	                				<div class="testimonial-text">
+		                                <p>
+		                                	"Les plus grandes entreprises réparties sur les 12 régions avec leurs caractéristiques sont présentées dans cette carte.Cliquez sur le lien ci-dessous pour visualiser et interagir avec la carte"<br>
+		                                	<a href="index9.html#">Carte des plus grandes entreprises réparties sur les régions</a>
+		                                </p>
+	                                </div>
+	                			</div>
+	                		</div>
+	                		<!-- Nav tabs -->
+	                		<ul class="nav nav-tabs" role="tablist">
+	                			<li role="presentation" class="active">
+	                				<a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab"></a>
+	                			</li>
+	                			<li role="presentation">
+	                				<a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"></a>
+	                			</li>
+	                			
+	                			<li role="presentation">
+	                				<a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab"></a>
+	                			</li>
+	                			<li role="presentation">
+	                				<a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab"></a>
+	                			</li>
+	                		</ul>
+	                	</div>
+	                </div>
+	            </div>
+	        </div>
+        </div>
+                
+        <!-- Blog -->
+        <div class="blog-container section-container">
+	        <div class="container">
+	        	
+	            <div class="row">
+	                <div class="col-sm-12 blog section-description wow fadeIn">
+	                    <h2>Cartes régionales</h2>
+	                    <div class="divider-1 wow fadeInUp"><span></span></div>
+	                </div>
+	            </div>
+	            
+	            <div class="row">
+	                <div class="col-sm-6 blog-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3">
+	                			<div class="blog-box-image">
+	                				<img src="assets/img/blog/1.jpg" alt="" data-at2x="assets/img/blog/1.jpg">
+	                			</div>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<h3><a href="index5.html">Carte de nombre des entreprises créés en 2017</a> <i class="fa fa-angle-right"></i></h3>
+	                			
+		                    	<p>
+		                    		Cette carte représente le nombre d'entreprises créés en 2017 par les provinces de la région de Draâa-Tafilalet
+		                    	</p>
+	                		</div>
+	                	</div>
+	                </div>
+	                <div class="col-sm-6 blog-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3">
+	                			<div class="blog-box-image">
+	                				<img src="assets/img/blog/2.jpg" alt="" data-at2x="assets/img/blog/2.jpg">
+	                			</div>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<h3><a href="index6.html">Carte d'évolution de nombre des entreprises à la région de Drâa-Tafilalet </a> <i class="fa fa-angle-right"></i></h3>
+	                			<!-- <div class="blog-box-date"><i class="fa fa-calendar-o"></i> 13 August 2015</div> -->
+		                    	<p>
+		                    		Cette carte présente le nombre dentreprises existantes dans la région de Drâa-Tafilalet dans des dates différentes.
+		                    	</p>
+	                		</div>
+	                	</div>
+	                </div>
+	            </div>
+	            
+	            <div class="row">
+	                
+	                <div class="col-sm-6 blog-box wow fadeInLeft">
+	                	<div class="row">
+	                		<div class="col-sm-3">
+	                			<div class="blog-box-image">
+	                				<img src="assets/img/blog/4.jpg" alt="" data-at2x="assets/img/blog/4.jpg">
+	                			</div>
+	                		</div>
+	                		<div class="col-sm-9">
+	                			<h3><a href="index8.html">Carte de réseau routier</a> <i class="fa fa-angle-right"></i></h3>
+		                    	<p>
+		                    		la carte permet de visualiser les différentes classes de routes existantes dans la région de Drâa-Tafilalet
+		                    	</p>
+	                		</div>
+	                	</div>
+	                </div>
+	            </div>
+	            
+	            <div class="row">
+	            	<!-- <div class="col-sm-12 section-bottom-button wow fadeInUp">
+                        <a class="btn btn-link-1" href="#">Visit the blog</a> -->
+	            	</div>
+	            </div>
+
+	        </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer-container">
+	        <div class="container">
+	        	<div class="row">
+	        		
+                    <div class="col-sm-6 footer-left">
+                    	<h3 style="color:orange">Source des données </h3>
+                    	<ul style="list-style-type:disc;">
+                            <li><a href="http://barometre.directinfo.ma/index.html" style="color: white"> www.barometre.directinfo.ma </a></li>
+                            <li><a href="https://www.hcp.ma/" style="color: white">www.hcp.ma</a></li>
+                            <li><a href="https://ma.kompass.com/" style="color: white">ma.kompass.com</a></li>
+                            <li><a href="http://www.equipement.gov.ma/Pages/accueil.aspx" style="color: white">www.equipement.gov.ma</a></li>
+                            <li><a href="http://maroc-maps.blogspot.com" style="color: white">maroc-maps.blogspot.com</a></li>
+                           
+                            </ul>
+                    	
+
+                    	<!-- <div class="contact-form">
+                    		<form role="form" action="assets/contact.php" method="post">
+		                    	<div class="form-group">
+		                    		<label class="sr-only" for="contact-email">Email</label>
+		                        	<input type="text" name="email" placeholder="Email..." class="contact-email form-control" id="contact-email">
+		                        </div>
+		                        <div class="form-group">
+		                        	<label class="sr-only" for="contact-subject">Subject</label>
+		                        	<input type="text" name="subject" placeholder="Subject..." class="contact-subject form-control" id="contact-subject">
+		                        </div>
+		                        <div class="form-group">
+		                        	<label class="sr-only" for="contact-message">Message</label>
+		                        	<textarea name="message" placeholder="Message..." class="contact-message form-control" id="contact-message"></textarea>
+		                        </div>
+		                        <button type="submit" class="btn">Send message</button>
+		                    </form>
+                    	</div> -->
+                    </div>
+                    
+                    <div class="col-sm-5 col-sm-offset-1 footer-right">
+                    	<h3 style="color:orange " >ce site est créé par :</h3>
+                    	<div class="footer-social">
+                    		 <p>Sara JEBARI & Badii MECHERGUI </p>
+	                    	
+                    	</div>
+                    	<div class="footer-copyright">
+                    	 Sciences Géomatiques et Ingénierie Topographique<br>&copy; Institut agronomique et vétérinaire Hassan II <br> Madinat Al Irfane, B.P. 6202.Rabat – Maroc <be><a href="https://www.google.com/maps/place/Institut+Agronomique+et+Vétérinaire+Hassan+II/@33.9763941,-6.8665965,15z/data=!4m5!3m4!1s0x0:0x8bbf5756ab11f3ea!8m2!3d33.9763941!4d-6.8665965"> Notre position </a>
+                    	</div>
+                    </div>
+                    
+                </div>
+	        </div>
+	        
+	        <div class="container-fluid">
+	        	<div class="row">
+                	<div class="col-sm-12 footer-bottom">
+                		<a class="scroll-link" href="#top-content"><i class="fa fa-chevron-up"></i></a>
+                	</div>
+                </div>
+	        </div>
+        </footer>
+
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/retina-1.1.0.min.js"></script>
+        <script src="assets/js/waypoints.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>
